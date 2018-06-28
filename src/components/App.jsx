@@ -8,11 +8,13 @@ import './App.css';
 class App extends Component {
   componentDidMount = () =>{
     load('clients.json')
+    .then(data=>JSON.parse(data))
     .then(data=>{
       store.dispatch({
         type:'LOAD_USER',
         users: data
       })
+     
     })
   }
  
