@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import load from './load';
 import store from '../store/store';
+import {Container, Grid} from 'semantic-ui-react';
 import Userlist from './Userlist/Userlist';
+import Selecteeduser from './Selecteduser/Selecteduser';
 import './App.css';
 
 class App extends Component {
@@ -21,9 +23,21 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
-        <Userlist />
-      </div>
+      <Container>
+        <Grid columns={2} divided> 
+          <Grid.Row>
+            <Grid.Column>
+              <Userlist />
+            </Grid.Column>
+
+            <Grid.Column>
+              <Selecteeduser />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+        
+     
     );
   }
 }

@@ -1,25 +1,24 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-
-import { Card,  Image } from 'semantic-ui-react';
+import {setActiveUser} from '../../store/action';
+import { List } from 'semantic-ui-react';
+import Userlistitem from './Userlistitem';
 class Userlist extends Component {
     
     render(){
-      
+        const {onUserClick} = this.props;
+     
+       
         return(
-           <div>
-              {
-                    this.props.users.map((user, index)=>{
-                       return <Card key={index}>
-                            <Image src={user.general.avatar} size='small'></Image>
-                            <Card.Content>
-                                <Card.Header>{user.general.firstName}{user.general.lastName}</Card.Header>
-                                <Card.Description>{user.job.title}</Card.Description>
-                            </Card.Content>
-                        </Card>   
-                    })
-                }
-           </div>
+           <List >
+            {   
+                
+                this.props.users.map((user, index)=>{
+                    return <Userlistitem key={index} user={user} onClick={ ()=>onUserClick(index)} />
+                })
+            }
+         
+           </List>
                
             
            
@@ -29,6 +28,16 @@ class Userlist extends Component {
 
 
 const mapStateToProps = (state) => ({
-    users: state.users
-})
-export default connect(mapStateToProps)(Userlist)
+    users: state.users,
+    
+});
+
+const mapDispatchToProps =(dispatch) =>{
+   return {
+        onUserClick: (index)=>{
+           
+            dispatch(setActiveUser(index))
+        }
+   }
+}
+export default connect(mapStateToProps, mapDispatchToProps )(Userlist)
