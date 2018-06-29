@@ -9,7 +9,7 @@ import Searchbar from './Search/Search';
 
 
 class App extends Component {
-  componentDidMount = () =>{
+  componentDidMount = ()=>{
     load('clients.json')
     .then(data=>JSON.parse(data))
     .then(data=>{

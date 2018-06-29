@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveUser } from '../../store/action';
 import { List } from 'semantic-ui-react';
-import Userlistitem from './Userlistitem';
+import UserListitem from './Userlistitem';
 import { searchFilter } from '../filter';
 
 
@@ -27,17 +27,17 @@ class UserList extends Component {
     searchQuery: PropTypes.string
   }
   render() {
-    const { onUserClick, users, searchQuery } = this.props;
+    const { onUserClick,users,searchQuery } = this.props;
     let userList = users;
 
     if (searchQuery) {
-      userList = searchFilter(users, searchPaths, searchQuery);
+      userList = searchFilter( users, searchPaths, searchQuery );
     }
 
     return (
       <List>
         {userList.map((user, index) => (
-          <Userlistitem
+          <UserListitem
             key={index}
             user={user}
             onClick={() => onUserClick(index)}
