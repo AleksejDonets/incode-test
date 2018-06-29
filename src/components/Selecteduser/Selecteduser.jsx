@@ -4,7 +4,7 @@ import { Item,Image, Container} from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
 
 class Selecteduser extends Component {
-    static defaultProps = {
+    static propTypes = {
         activeUser: PropTypes.number,
         users: PropTypes.array
     }

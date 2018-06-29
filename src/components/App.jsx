@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import load from './load';
-import store from '../store/store';
-import {Container, Grid} from 'semantic-ui-react';
-import Userlist from './Userlist/Userlist';
-import Selecteeduser from './Selecteduser/Selecteduser';
-import Searchbar from './Search/Search';
+import { loadUsers } from '../store/action';
+import { Container, Grid}  from 'semantic-ui-react';
+import { UserList } from './UserList';
+import { SelectedUser } from './Selecteduser';
+import SearchBar from './Search/Search';
 
 
 class App extends Component {
-  componentDidMount = ()=>{
+  componentDidMount = () =>{
     load('clients.json')
     .then(data=>JSON.parse(data))
-    .then(data=>{
-      store.dispatch({
-        type:'LOAD_USER',
-        users: data
-      })
-     
-    })
+    .then(loadUsers);
   }
   render() {
     return (
@@ -26,11 +21,11 @@ class App extends Component {
         <Grid columns={2} divided> 
           <Grid.Row>
             <Grid.Column>
-              <Searchbar />
-              <Userlist />
+              <SearchBar />
+              <UserList />
             </Grid.Column>
             <Grid.Column textAlign='center'>
-              <Selecteeduser />
+              <SelectedUser />
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -38,4 +33,9 @@ class App extends Component {
     );
   }
 }
-export default connect()(App);
+
+App.propTypes = {
+  loadUsers: PropTypes.func.isRequired,
+};
+
+export default connect(null, { loadUsers })(App);

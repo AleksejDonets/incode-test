@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { List, Image } from 'semantic-ui-react';
 
 const UserListitem = ({ user, onClick }) => {
@@ -18,8 +18,9 @@ const UserListitem = ({ user, onClick }) => {
   );
 };
 
-Userlistitem.propTypes = {
-  user: PropTypes.array,
-  onClick: PropTypes.func,
+UserListitem.propTypes = {
+  user: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
+
 export default UserListitem;

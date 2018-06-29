@@ -3,5 +3,6 @@ module.exports = {
     "rules": {
         "linebreak-style": ["error",  "windows"],
         "arrow-body-style": ["error", "always"],
+       
     }
 };

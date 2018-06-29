@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveUser } from '../../store/action';
 import { List } from 'semantic-ui-react';
-import UserListitem from './Userlistitem';
+import UserListitem from './UserListitem';
 import { searchFilter } from '../filter';
 
 
@@ -22,10 +22,11 @@ const searchPaths = [
 class UserList extends Component {
 
   static defaultProps = {
-    onUserClick : PropTypes.func,
-    users: PropTypes.array,
-    searchQuery: PropTypes.string
-  }
+    setActiveUser: PropTypes.func.isRequired,
+    users: PropTypes.array.isRequired,
+    searchQuery: PropTypes.string.isRequired
+  };
+  
   render() {
     const { onUserClick,users,searchQuery } = this.props;
     let userList = users;
