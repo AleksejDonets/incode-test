@@ -13,9 +13,5 @@ const Userlistitem = ({user, onClick}) =>{
          </List.Content>
        </List.Item>
     )
-   
 }
-
-
-
 export default Userlistitem

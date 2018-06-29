@@ -8,11 +8,9 @@ export default url => {
           ? success(request.responseText)
           : fail(new Error(`Request Failed: ${request.statusText}`));
       });
-  
       request.addEventListener('error', () => {
         fail(new Error('Network Error'));
       });
-  
       request.send();
     });
   };

@@ -1,5 +1,3 @@
-
-
 function searchInObject(obj, searchPaths, searchValue) {
     const pathsLength = searchPaths.length;
   
@@ -17,15 +15,10 @@ function searchInObject(obj, searchPaths, searchValue) {
           break;
         }
       }
-      console.log(objItem)
-      
       if (objItem.includes(searchValue)) {
         return true;
-     
       }
-     
     }
-  
     return false;
 }
 

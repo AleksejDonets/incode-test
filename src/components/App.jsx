@@ -6,7 +6,7 @@ import {Container, Grid} from 'semantic-ui-react';
 import Userlist from './Userlist/Userlist';
 import Selecteeduser from './Selecteduser/Selecteduser';
 import Searchbar from './Search/Search';
-import './App.css';
+
 
 class App extends Component {
   componentDidMount = () =>{
@@ -20,9 +20,7 @@ class App extends Component {
      
     })
   }
- 
   render() {
-
     return (
       <Container>
         <Grid columns={2} divided> 
@@ -31,20 +29,13 @@ class App extends Component {
               <Searchbar />
               <Userlist />
             </Grid.Column>
-
-            <Grid.Column>
+            <Grid.Column textAlign='center'>
               <Selecteeduser />
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Container>
-        
-     
     );
   }
 }
-
-
-
-
 export default connect()(App);
