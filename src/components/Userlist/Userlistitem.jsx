@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List, Image } from 'semantic-ui-react';
 
 const Userlistitem = ({user, onClick}) =>{
@@ -14,4 +15,8 @@ const Userlistitem = ({user, onClick}) =>{
        </List.Item>
     )
 }
+Userlistitem.defaultProps={
+  user:PropTypes.array,
+  onClick: PropTypes.func
+} 
 export default Userlistitem

@@ -1,8 +1,13 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { Item,Image, Container} from 'semantic-ui-react';
+import { PropTypes } from 'prop-types';
 
 class Selecteduser extends Component {
+    static defaultProps = {
+        activeUser: PropTypes.number,
+        users: PropTypes.array
+    }
     displayActiveUser(){
         const {activeUser,users} = this.props;
         const selectedUser = users[activeUser];

@@ -1,67 +1,62 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {setActiveUser} from '../../store/action';
+import { setActiveUser } from '../../store/action';
 import { List } from 'semantic-ui-react';
 import Userlistitem from './Userlistitem';
-import {searchFilter} from '../filter';
+import { searchFilter } from '../filter';
 
-class Userlist extends Component {
 
-   userList(){
-        const {onUserClick, users, searchQuery} = this.props;
-        const searchPaths = [
-            'general.firstName',
-            'general.lastName',
-            'job.company',
-            'job.title',
-            'contact.email',
-            'contact.phone',
-            'address.street',
-            'address.city',
-            'address.country',
-        ];
-        const userLists = searchFilter(users, searchPaths ,searchQuery);
-        return(
-            <List >
-                {userLists.map((user, index)=>{
-                        return <Userlistitem key={index} user={user} onClick={ ()=>onUserClick(index)} />
-                    })
-                }
-        </List>  
-        )
+const searchPaths = [
+  'general.firstName',
+  'general.lastName',
+  'job.company',
+  'job.title',
+  'contact.email',
+  'contact.phone',
+  'address.street',
+  'address.city',
+  'address.country',
+];
+
+class UserList extends Component {
+
+  static defaultProps = {
+    onUserClick : PropTypes.func,
+    users: PropTypes.array,
+    searchQuery: PropTypes.string
+  }
+  render() {
+    const { onUserClick, users, searchQuery } = this.props;
+    let userList = users;
+
+    if (searchQuery) {
+      userList = searchFilter(users, searchPaths, searchQuery);
     }
-    render(){
-        const {onUserClick, users, searchQuery} = this.props;
-        if(searchQuery.length > 0){
-            return(
-                <div>{this.userList()}</div>
-            )
-        }else{
-            return(
-                <List >
-                {   
-                    users.map((user, index)=>{
-                        return <Userlistitem key={index} user={user} onClick={ ()=>onUserClick(index)} />
-                    })
-                }
-                </List>
-            );
-       }
-    }
+
+    return (
+      <List>
+        {userList.map((user, index) => (
+          <Userlistitem
+            key={index}
+            user={user}
+            onClick={() => onUserClick(index)}
+          />
+        ))}
+      </List>
+    );
+  }
 }
 
 
-const mapStateToProps = (state) => ({
-    users: state.users,
-    searchQuery: state.searchQuery
-    
+const mapStateToProps = state => ({
+  users: state.users,
+  searchQuery: state.searchQuery
 });
 
-const mapDispatchToProps =(dispatch) =>{
-   return {
-        onUserClick: (index)=>{
-            dispatch(setActiveUser(index))
-        }
-   }
-}
-export default connect(mapStateToProps, mapDispatchToProps )(Userlist)
+const mapDispatchToProps = dispatch => ({
+  onUserClick: index => dispatch(setActiveUser(index))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
