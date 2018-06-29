@@ -1,6 +1,7 @@
 const initialState = {
     users: [],
-    activeUser: []
+    activeUser: [],
+    searchQuery: ''
 }
 
 
@@ -12,6 +13,9 @@ const userReducer = function(state = initialState, action){
            return Object.assign({}, state, {
                activeUser: state.users.slice(action.index, action.index + 1)
             })
+
+        case 'ADD_SEARCH': 
+            return Object.assign({}, state, {searchQuery: action.value}  )
         default:
             return state
     }
