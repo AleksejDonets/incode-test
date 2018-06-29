@@ -5,12 +5,13 @@ import { PropTypes } from 'prop-types';
 
 class Selecteduser extends Component {
     static propTypes = {
-        activeUser: PropTypes.number,
+       
         users: PropTypes.array
     }
     displayActiveUser(){
         const {activeUser,users} = this.props;
         const selectedUser = users[activeUser];
+        console.log(selectedUser);
         return(
             <Container>   
                 <Item>

@@ -4,7 +4,7 @@ import { List, Image } from 'semantic-ui-react';
 
 const UserListitem = ({ user, onClick }) => {
   return (
-    <List.Item onClick={onClick}>
+    <List.Item onClick={onClick} >
       <Image avatar src={user.general.avatar} />
       <List.Content>
         <List.Header>
