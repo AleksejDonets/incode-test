@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import load from './load';
-import store from '../store/store';
+import axios from 'axios';
 import {Container, Grid} from 'semantic-ui-react';
+import store from '../store/store';
 import {UserList} from './UserList';
 import {SelectedUser} from './Selecteduser/';
 import Searchbar from './Search/Search';
@@ -10,15 +10,13 @@ import Searchbar from './Search/Search';
 
 class App extends Component {
   componentDidMount = () =>{
-    load('clients.json')
-    .then(data=>JSON.parse(data))
-    .then(data=>{
-      store.dispatch({
-        type:'LOAD_USER',
-        users: data
+    axios.get('clients.json')
+      .then( data => {
+        store.dispatch({
+          type:'LOAD_USER',
+          users: data.data
+        });
       });
-     
-    });
   }
   render() {
     return (

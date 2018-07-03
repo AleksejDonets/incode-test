@@ -5,32 +5,30 @@ import { PropTypes } from 'prop-types';
 
 class Selecteduser extends Component {
     static propTypes = {
-       
-        users: PropTypes.array
+        activeUSer: PropTypes.object
     }
     displayActiveUser(){
-        const {activeUser,users} = this.props;
-        const selectedUser = users[activeUser];
-        console.log(selectedUser);
+        const {activeUser} = this.props;
+        
         return(
             <Container>   
                 <Item>
-                    <Image size="small" src={selectedUser.general.avatar} centered={true}/>
-                    <Item.Header as='h1'>{selectedUser.general.firstName}{selectedUser.general.lastName}</Item.Header>
+                    <Image size="small" src={activeUser.general.avatar} centered={true}/>
+                    <Item.Header as='h1'>{activeUser.general.firstName}{activeUser.general.lastName}</Item.Header>
                     <Item.Meta>
                         <h3>Job:</h3>
-                        <span >{selectedUser.job.company}</span> : <span>{selectedUser.job.title}</span>
+                        <span >{activeUser.job.company}</span> : <span>{activeUser.job.title}</span>
                     </Item.Meta>
                     <Item.Description>
                         <h3>Address:</h3>
                         <p>
-                            <span>{selectedUser.address.street}</span> , <span>{selectedUser.address.city}</span> , <span>{selectedUser.address.zipcode}</span> , <span>{selectedUser.address.country}</span>
+                            <span>{activeUser.address.street}</span> , <span>{activeUser.address.city}</span> , <span>{activeUser.address.zipcode}</span> , <span>{activeUser.address.country}</span>
                         </p>
                     </Item.Description>
                     <Item.Extra>
                         <h3>Contacts: </h3>
                         <p>           
-                            <span>{selectedUser.contact.email}</span> , Tel:<span>{selectedUser.contact.phone}</span>
+                            <span>{activeUser.contact.email}</span> , Tel:<span>{activeUser.contact.phone}</span>
                         </p>          
                     </Item.Extra>
                 </Item>
@@ -39,7 +37,7 @@ class Selecteduser extends Component {
     }
     render(){
         const {activeUser} = this.props;
-        if(activeUser.length === 0){
+        if(Object.keys(activeUser).length === 0){
             return(
                 <h1>User not selected</h1>
             )
@@ -53,7 +51,7 @@ class Selecteduser extends Component {
 }
 
 const mapStateToProps = (state)=>({
-    users: state.users,
+
     activeUser: state.activeUser
 });
 export default connect(mapStateToProps)(Selecteduser);
