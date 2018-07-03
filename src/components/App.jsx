@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Container, Grid} from 'semantic-ui-react';
 import store from '../store/store';
 import {UserList} from './UserList';
-import {SelectedUser} from './Selecteduser/';
+import {SelectedUser} from './SelectedUser/';
 import Searchbar from './Search/Search';
 
 

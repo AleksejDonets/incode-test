@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Item,Image, Container} from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
 
-class Selecteduser extends Component {
+class SelectedUser extends Component {
     static propTypes = {
         activeUSer: PropTypes.object
     }
@@ -54,4 +54,4 @@ const mapStateToProps = (state)=>({
 
     activeUser: state.activeUser
 });
-export default connect(mapStateToProps)(Selecteduser);
+export default connect(mapStateToProps)(SelectedUser);

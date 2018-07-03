@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { List, Image } from 'semantic-ui-react';
 
-const UserListitem = ({ user, onClick }) => {
+const UserListItem = ({ user, onClick }) => {
   return (
     <List.Item onClick={onClick}>
       <Image avatar src={user.general.avatar} />
@@ -18,9 +18,9 @@ const UserListitem = ({ user, onClick }) => {
   );
 };
 
-UserListitem.propTypes = {
+UserListItem.propTypes = {
   user: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default UserListitem;
+export default UserListItem;
